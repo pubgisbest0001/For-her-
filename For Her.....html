@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: pink;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            color: red;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: white;
+            color: red;
+        }
+        .heart {
+            color: red;
+            font-size: 50px;
+            position: absolute;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+            .cute-cat {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="/mnt/data/cat.gif" alt="Cute Cat Holding Rose" class="cute-cat">
+    <div class="container">
+        <h1>Will you be my Valentine, Hetuuuu? ❤️ <br><small>(ik apan thode door hai but we'll work it out together)</small></h1>
+        <div class="buttons">
+            <button class="yes" onclick="yesClicked()">Yes</button>
+            <button class="no" id="noBtn" onmouseover="moveNoButton()">No</button>
+        </div>
+    </div>
+    <script>
+        function yesClicked() {
+            alert("Yay! I love you ❤️");
+            document.body.innerHTML = '<h1 style="color: red;">You made me the happiest person ever, Hetuuuu! ❤️</h1>' +
+                                      '<h2 style="color: red;">Ab toh merko ahm aana padega meri babbyyyy ke liyee ❤️</h2>';
+        }
+        function moveNoButton() {
+            let noBtn = document.getElementById("noBtn");
+            let x = Math.random() * window.innerWidth * 0.8;
+            let y = Math.random() * window.innerHeight * 0.8;
+            noBtn.style.position = "absolute";
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+        }
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💖";
+            heart.classList.add("heart");
+            document.body.appendChild(heart);
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
